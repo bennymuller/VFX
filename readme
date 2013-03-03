@@ -1,0 +1,54 @@
+This is the template for Benny's VFX pipeline.
+Current support is limited to Maya 2013, H12, and Nuke.
+
+In order to use the pipeline you will need to set some environment variables :
+
+OSX:
+Add the following to your PATH
+
+#BENNY VFX PIPELINE VARS
+FXPIPEPATH="/Volumes/HDD/bennymuller/git/VFX"
+export FXPIPEPATH
+NUKE_PATH="$FXPIPEPATH/nuke:${NUKE_PATH}"
+export NUKE_PATH
+MAYA_SCRIPT_PATH="$FXPIPEPATH/maya:${MAYA_SCRIPT_PATH}"
+export MAYA_SCRIPT_PATH
+PYTHONPATH="$FXPIPEPATH/python:$FXPIPEPATH/maya:${PYTHONPATH}"
+#END
+
+
+
+WINDOWS:
+Create a batch file with the following entries:
+
+
+echo -----------------------------------------------------------
+REM - this is the location of the root of the vfxpipe folder
+set FXPIPEPATH=z:\software\devl_vfxpipe
+
+REM - don't change the following 3 lines
+set PYTHONPATH=%PYTHONPATH%;%FXPIPEPATH%\python;%FXPIPEPATH%\maya
+set NUKE_PATH=%NUKE_PATH%;%FXPIPEPATH%\nuke
+set MAYA_SCRIPT_PATH=%FXPIPEPATH%\maya
+
+REM - these are optional here
+set job=myjob
+set seq=sequencename
+set shot=0001
+REM - end of optional variables
+
+"c:\program files\autodesk\maya2013\bin\maya.exe"
+
+
+Additionally, the pipeline listens to (and wants!) other variables:
+set job=yourjobname
+set seq=sequencename
+set shot=shotnumber
+
+These variables will allow the system to automatically load Nuke and Maya tools for the show.
+look in the fxpipe/__init__.py file for the information you need to modify for your custom setup
+
+
+
+
+BASED UPON PIPE BY Robert Nederhorst - http://throb.net
