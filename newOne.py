@@ -1,1 +1,2 @@
-cxvzxv
+def newOnw():
+	print 'new'
